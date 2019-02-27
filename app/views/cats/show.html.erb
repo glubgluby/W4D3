@@ -1,0 +1,34 @@
+<h1><%= @cat.name %></h1>
+
+<table>
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+  <% [:age, :birth_date, :color, :sex].each do |attr_name| %>
+    <tr>
+      <td><%= attr_name %></td>
+      <td><%= @cat.send(attr_name) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<br>
+<a href="<%= cats_url%>">Back to the main page!</a>
+<br>
+
+<a href="<%= edit_cat_url(@cat) %>">Edit <%= @cat.name %></a>
+<br>
+<a href="<%= new_cat_rental_request_url %>" >Rent this cat! </a>
+<h2>Rental Requests</h2>
+<table>
+  <tr>
+    <th>User</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Status</th>
+  </tr>
+  <% @requests.order('start_date').each do |req| %>
+    <%= render 'req_tr', req: req %>
+  <% end %>
+</table>
